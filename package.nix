@@ -207,9 +207,10 @@ in {
     git
     mercurial
     openssh
-    man # for testing `nix-* --help`
   ] ++ lib.optionals (doInstallCheck || enableManual) [
     jq # Also for custom mdBook preprocessor.
+  ] ++ lib.optionals (doInstallCheck && enableManual) [
+    man # for testing `nix-* --help`
   ] ++ lib.optional stdenv.hostPlatform.isStatic unixtools.hexdump
   ;
 
